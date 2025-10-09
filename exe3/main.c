@@ -23,7 +23,7 @@ void i2c_task(void *p) {
 
     // TODO
     // read id chip BMP280
-    char buffer[32];
+    uint8_t buffer[32];
     printf("BMP280 ID: 0x%X \n", buffer[0]);
 
     while (1) {
