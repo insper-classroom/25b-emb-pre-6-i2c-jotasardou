@@ -23,13 +23,18 @@ void i2c_task(void *p) {
 
     // reset device to its default state
     // colocando 1 no bit 7 do registrador 0x6B
-    uint8_t buf_write[2];
-    buf_write[0] = MPUREG_PWR_MGMT_1; // registrador
-    buf_write[1] = 1 << 7;            // valor
-    i2c_write_blocking(i2c_default, I2C_CHIP_ADDRESS, buf_write, 2, false);
-
+    // uint8_t buf_write[2];
+    // buf_write[0] = MPUREG_PWR_MGMT_1; // registrador
+    // buf_write[1] = 1 << 7;            // valor
+    // i2c_write_blocking(i2c_default, I2C_CHIP_ADDRESS, buf_write, 2, false);
+    
     // TODO
     // Configure o acc para operar em 4G
+    uint8_t buf_write[2];
+    buf_write[0] = MPUREG_ACCEL_CONFIG;
+    buf_write[1] = 1 << 3;
+    i2c_write_blocking(i2c_default, I2C_CHIP_ADDRESS, buf_write, 2, false);
+
 
     while (1) {
         vTaskDelay(pdMS_TO_TICKS(200));
